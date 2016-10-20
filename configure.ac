@@ -10,4 +10,6 @@ AC_CONFIG_FILES([
                  src/psgrn/Makefile
                  src/pscmp/Makefile
                  ])
+
+AC_SUBST([AM_FFLAGS], [-mcmodel=medium])
 AC_OUTPUT

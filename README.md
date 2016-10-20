@@ -23,7 +23,7 @@ Packaging has been done by Hannes Vasyura-Bathke.
 # Compile and install PSGRN and PSCMP
 ```
 autoreconf -i   # only if 'configure' script is missing
-F77=gfortran FFLAGS=-mcmodel=medium ./configure
+./configure
 make
 sudo make install
 ```
