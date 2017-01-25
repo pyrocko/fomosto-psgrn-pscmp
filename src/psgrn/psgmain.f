@@ -14,9 +14,8 @@ c
       double precision zs1,zs2,dzs,zrs2,swap,vp,vs
       character*35 stype(4)
       character*35 comptxt(14)
-      character*80 inputfile,fname(14),outdir
-      character*163 green(14,4)
-      character*180 dataline
+      character*800 inputfile,fname(14),outdir
+      character*1603 green(14,4)
       integer time
 c
 c     read input file file
@@ -52,11 +51,11 @@ c
 c     parameters for source-observation array
 c     =======================================
 c
-      call getdata(10,dataline)
-      read(dataline,*)zrec,ioc
+      call skip_comments(10)
+      read(10,*)zrec,ioc
       zrec=zrec*km2m
-      call getdata(10,dataline)
-      read(dataline,*)nr,r1,r2,sampratio
+      call skip_comments(10)
+      read(10,*)nr,r1,r2,sampratio
       if(sampratio.lt.1.d0)then
         stop 'Error: max. to min. sampling ratio < 1!'
       endif
@@ -89,8 +88,8 @@ c
         enddo
       endif
 c
-      call getdata(10,dataline)
-      read(dataline,*)nzs,zs1,zs2
+      call skip_comments(10)
+      read(10,*)nzs,zs1,zs2
       if(zs1.gt.zs2)then
         swap=zs1
         zs1=zs2
@@ -120,8 +119,8 @@ c
         zs2=zs1+dble(nzs-1)*dzs
       endif
 c
-      call getdata(10,dataline)
-      read(dataline,*)nt,twindow
+      call skip_comments(10)
+      read(10,*)nt,twindow
       if(twindow.le.0.d0)then
         stop ' Error in input: wrong time window!'
       else if(nt.le.0)then
@@ -137,12 +136,12 @@ c
 c     wavenumber integration parameters
 c     =================================
 c
-      call getdata(10,dataline)
-      read(dataline,*)accuracy
+      call skip_comments(10)
+      read(10,*)accuracy
       if(accuracy.le.0.d0.or.accuracy.ge.1.d0)accuracy=0.1d0
 c
-      call getdata(10,dataline)
-      read(dataline,*)grfac
+      call skip_comments(10)
+      read(10,*)grfac
       if(grfac.le.grfacmin)then
         grfac=0.d0
       endif
@@ -150,10 +149,10 @@ c
 c     parameters for output files
 c     ===========================
 c
-      call getdata(10,dataline)
-      read(dataline,*)outdir
+      call skip_comments(10)
+      read(10,*)outdir
 c
-      do lend=80,1,-1
+      do lend=800,1,-1
         if(outdir(lend:lend).ne.' ')goto 100
       enddo
 100   continue
@@ -162,14 +161,14 @@ c
         stop 'Error: wrong format for output directory!'
       endif
 c
-      call getdata(10,dataline)
-      read(dataline,*)(fname(i),i=1,3)
-      call getdata(10,dataline)
-      read(dataline,*)(fname(i),i=4,9)
-      call getdata(10,dataline)
-      read(dataline,*)(fname(i),i=10,14)
+      call skip_comments(10)
+      read(10,*)(fname(i),i=1,3)
+      call skip_comments(10)
+      read(10,*)(fname(i),i=4,9)
+      call skip_comments(10)
+      read(10,*)(fname(i),i=10,14)
       do i=1,14
-        do lenf=80,1,-1
+        do lenf=800,1,-1
           if(fname(i)(lenf:lenf).ne.' ')goto 110
         enddo
 110     continue
@@ -198,8 +197,8 @@ c
 c     global model parameters
 c     =======================
 c
-      call getdata(10,dataline)
-      read(dataline,*)l
+      call skip_comments(10)
+      read(10,*)l
       if(l.gt.lmax)then
         stop 'the max. no of layers (lmax) too small defined!'
       endif
@@ -209,8 +208,8 @@ c      =============================
 c
       kgmax=0.d0
       do i=1,l
-        call getdata(10,dataline)
-        read(dataline,*)j,h(i),vp,vs,rho(i),etk(i),etm(i),alf(i)
+        call skip_comments(10)
+        read(10,*)j,h(i),vp,vs,rho(i),etk(i),etm(i),alf(i)
         if(alf(i).gt.1.d0.or.alf(i).le.0.d0)then
           stop 'Error in psgmain: wrong value for parameter alpha!'
         endif
