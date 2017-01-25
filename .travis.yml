@@ -11,6 +11,9 @@ addons:
     apt:
         packages: [ gfortran ]
 
+before_install:
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+
 install:
     - autoreconf -i; ./configure; make
 
