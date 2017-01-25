@@ -1,5 +1,7 @@
 # PSGRN and PSCMP (packaged as fomosto backend)
 
+[![Build Status](https://travis-ci.org/pyrocko/fomosto-psgrn-pscmp.svg?branch=master)](https://travis-ci.org/pyrocko/fomosto-psgrn-pscmp)
+
 Code to calculate synthetic stress/strain/tilt/gravitational fields on a
 layered viscoelastic halfspace.
 
