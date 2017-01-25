@@ -1,0 +1,21 @@
+language: fortran
+
+matrix:
+    include:
+        - os: linux
+        - os: osx
+          osx_image: xcode7.3
+          language: generic
+
+addons:
+    apt:
+        packages: [ gfortran ]
+
+install:
+    - autoreconf -i; ./configure; make
+
+script:
+    - echo "All done!"
+
+notifications:
+    email: false
