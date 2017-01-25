@@ -29,7 +29,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double complex clonrec1,clonrec2
       double complex clonrec(NRECMAX)
       character*80 infile
-      character*180 dataline
       logical onlysc,neweq
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     END DECLARATIONS
@@ -71,14 +70,14 @@ c00000000000000000000000000000000000000000000000000000000000000000000000
 c     READ IN PARAMETERS FOR OBSERVATION ARRAY
 c     ========================================
 c00000000000000000000000000000000000000000000000000000000000000000000000
-      call getdata(10,dataline)
-      read(dataline,*)ilonrec
+      call skip_comments(10)
+      read(10,*)ilonrec
       if(ilonrec.eq.0)then
 c
 c       irregular observation positions
 c
-        call getdata(10,dataline)
-        read(dataline,*)nrec
+        call skip_comments(10)
+        read(10,*)nrec
         if(nrec.lt.1)then
           stop ' Error: wrong input for nrec!'
         else if(nrec.gt.NRECMAX)then
@@ -94,10 +93,10 @@ c
 c
 c        1D observation profile
 c
-        call getdata(10,dataline)
-        read(dataline,*)nrec
-        call getdata(10,dataline)
-        read(dataline,*)clonrec1,clonrec2
+        call skip_comments(10)
+        read(10,*)nrec
+        call skip_comments(10)
+        read(10,*)clonrec1,clonrec2
         if(nrec.lt.1)then
           stop ' Error: wrong input for nrec!'
         else if(nrec.gt.NRECMAX)then
@@ -120,10 +119,10 @@ c
 c
 c        2D rectanglar observation array
 c
-        call getdata(10,dataline)
-        read(dataline,*)nlatrec,latrec1,latrec2
-        call getdata(10,dataline)
-        read(dataline,*)nlonrec,lonrec1,lonrec2
+        call skip_comments(10)
+        read(10,*)nlatrec,latrec1,latrec2
+        call skip_comments(10)
+        read(10,*)nlonrec,lonrec1,lonrec2
         nrec=nlatrec*nlonrec
         if(nrec.lt.1)then
           stop ' Error: wrong input for nrec!'
@@ -155,36 +154,36 @@ c00000000000000000000000000000000000000000000000000000000000000000000000
 c      READ IN OUTPUT PARAMETERS
 c      =========================
 c00000000000000000000000000000000000000000000000000000000000000000000000
-      call getdata(10,dataline)
-      read(dataline,*)i
-      if(i.eq.1)read(dataline,*)insar,xlos,ylos,zlos
-      call getdata(10,dataline)
-      read(dataline,*)i
-      if(i.eq.1)read(dataline,*)icmb,friction,skempton,
+      call skip_comments(10)
+      read(10,*)i
+      if(i.eq.1)read(10,*)insar,xlos,ylos,zlos
+      call skip_comments(10)
+      read(10,*)i
+      if(i.eq.1)read(10,*)icmb,friction,skempton,
      &                          strike0,dip0,rake0,(sigma0(j),j=1,3)
-      call getdata(10,dataline)
-      read(dataline,*)outdir
+      call skip_comments(10)
+      read(10,*)outdir
 c
-      call getdata(10,dataline)
-      read(dataline,*)(itout(i),i=1,3)
-      call getdata(10,dataline)
-      read(dataline,*)(toutfile(i),i=1,3)
-      call getdata(10,dataline)
-      read(dataline,*)(itout(i),i=4,9)
-      call getdata(10,dataline)
-      read(dataline,*)(toutfile(i),i=4,9)
-      call getdata(10,dataline)
-      read(dataline,*)(itout(i),i=10,14)
-      call getdata(10,dataline)
-      read(dataline,*)(toutfile(i),i=10,14)
-      call getdata(10,dataline)
-      read(dataline,*)nsc
+      call skip_comments(10)
+      read(10,*)(itout(i),i=1,3)
+      call skip_comments(10)
+      read(10,*)(toutfile(i),i=1,3)
+      call skip_comments(10)
+      read(10,*)(itout(i),i=4,9)
+      call skip_comments(10)
+      read(10,*)(toutfile(i),i=4,9)
+      call skip_comments(10)
+      read(10,*)(itout(i),i=10,14)
+      call skip_comments(10)
+      read(10,*)(toutfile(i),i=10,14)
+      call skip_comments(10)
+      read(10,*)nsc
       if(nsc.gt.NSCMAX)then
         stop ' Error: NSCMAX defined too small!'
       endif
       do isc=1,nsc
-        call getdata(10,dataline)
-        read(dataline,*)tsc(isc),scoutfile(isc)
+        call skip_comments(10)
+        read(10,*)tsc(isc),scoutfile(isc)
         if(tsc(isc).lt.0.d0)then
           stop ' Error: wrong scenario time!'
         endif
@@ -201,21 +200,21 @@ c00000000000000000000000000000000000000000000000000000000000000000000000
 c     READ IN PARAMETERS FOR EARTH MODEL CHOICE
 c     =========================================
 c00000000000000000000000000000000000000000000000000000000000000000000000
-      call getdata(10,dataline)
-      read(dataline,*)grndir
+      call skip_comments(10)
+      read(10,*)grndir
 c
-      call getdata(10,dataline)
-      read(dataline,*)(green(i),i=1,3)
-      call getdata(10,dataline)
-      read(dataline,*)(green(i),i=4,9)
-      call getdata(10,dataline)
-      read(dataline,*)(green(i),i=10,14)
+      call skip_comments(10)
+      read(10,*)(green(i),i=1,3)
+      call skip_comments(10)
+      read(10,*)(green(i),i=4,9)
+      call skip_comments(10)
+      read(10,*)(green(i),i=10,14)
 c00000000000000000000000000000000000000000000000000000000000000000000000
 c     READ IN PARAMETERS FOR RECTANGULAR SOURCES
 c     ==========================================
 c00000000000000000000000000000000000000000000000000000000000000000000000
-      call getdata(10,dataline)
-      read(dataline,*)ns
+      call skip_comments(10)
+      read(10,*)ns
       if(ns.lt.1)then
         stop ' Error: wrong number of subfaults!'
       endif
@@ -224,8 +223,8 @@ c00000000000000000000000000000000000000000000000000000000000000000000000
       endif
       neq=0
       do is=1,ns
-        call getdata(10,dataline)
-        read(dataline,*)i,latref(is),lonref(is),zref(is),
+        call skip_comments(10)
+        read(10,*)i,latref(is),lonref(is),zref(is),
      &      length(is),width(is),strike(is),dip(is),
      &      nptch_s(is),nptch_d(is),tstart(is)
         if(nptch_s(is)*nptch_d(is).gt.NPTCHMAX)then
@@ -238,8 +237,8 @@ c00000000000000000000000000000000000000000000000000000000000000000000000
         width(is)=width(is)*KM2M
         tstart(is)=tstart(is)*DAY2SEC
         do iptch=1,nptch_s(is)*nptch_d(is)
-          call getdata(10,dataline)
-          read(dataline,*)ptch_s(is,iptch),ptch_d(is,iptch),sx,sy,sz
+          call skip_comments(10)
+          read(10,*)ptch_s(is,iptch),ptch_d(is,iptch),sx,sy,sz
           ptch_s(is,iptch)=ptch_s(is,iptch)*KM2M
           ptch_d(is,iptch)=ptch_d(is,iptch)*KM2M
           slip_s(is,iptch)=sx

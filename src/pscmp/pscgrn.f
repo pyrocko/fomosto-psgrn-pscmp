@@ -39,7 +39,6 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double precision zs,las,mus,rhos,etks,etms,alfs
       double precision psss,shss,psds,shds,pscl,psep
       double precision d1,d2,d3,d4,d5,d6,d7
-      character*180 dataline
 c
 c     OPEN GREEN'S FUNCTIONS FILES
 c     ============================
@@ -81,45 +80,45 @@ c
           unit(i,istp)=10+14*(istp-1)+i
           open(unit(i,istp),file=greens(i,istp),status='old')
           if(i*istp.eq.1)then
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)nr,r1,r2,sampratio
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)nr,r1,r2,sampratio
             if(nr.gt.NRMAX)then
               stop 'srror: NRMAX too small defined!'
             endif
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)zrec,larec,murec,rhorec,etkrec,
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)zrec,larec,murec,rhorec,etkrec,
      &                      etmrec,alfrec
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)nzs,zs1,zs2
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)nzs,zs1,zs2
             if(nzs.gt.NZSMAX)then
               stop 'srror: NZSMAX too small defined!'
             endif
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)nt,twindow
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)nt,twindow
             if(nt.gt.NTMAX)then
               stop 'srror: NTMAX too small defined!'
             endif
           else
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)n,d1,d2,d3
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)n,d1,d2,d3
             if(n.ne.nr.or.d1.ne.r1.or.d2.ne.r2.or.d3.ne.sampratio)then
               stop 'srror: different observation sampling in Greens!'
             endif
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)d1,d2,d3,d4,d5,d6,d7
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)d1,d2,d3,d4,d5,d6,d7
             if(d1.ne.zrec.or.d2.ne.larec.or.
      &         d3.ne.murec.or.d4.ne.rhorec.or.
      &         d5.ne.etkrec.or.d6.ne.etmrec.or.
      &         d7.ne.alfrec)then
               stop 'srror: diff. observation site parameters in Greens!'
             endif
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)n,d1,d2
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)n,d1,d2
             if(n.ne.nzs.or.d1.ne.zs1.or.d2.ne.zs2)then
               stop 'srror: different source sampling in Greens!'
             endif
-            call getdata(unit(i,istp),dataline)
-            read(dataline,*)n,d1
+            call skip_comments(unit(i,istp))
+            read(unit(i,istp),*)n,d1
             if(n.ne.nt.or.d1.ne.twindow)then
               stop 'srror: different time sampling in Greens!'
             endif
@@ -230,11 +229,11 @@ c
           do i=1,14
             if(select(i,istp))then
               if(i.eq.1)then
-                call getdata(unit(i,istp),dataline)
-                read(dataline,*)zs,las,mus,rhos,etks,etms,alfs
+                call skip_comments(unit(i,istp))
+                read(unit(i,istp),*)zs,las,mus,rhos,etks,etms,alfs
               else
-                call getdata(unit(i,istp),dataline)
-                read(dataline,*)d1,d2,d3,d4,d5,d6,d7
+                call skip_comments(unit(i,istp))
+                read(unit(i,istp),*)d1,d2,d3,d4,d5,d6,d7
                 if(d1.ne.zs.or.d2.ne.las.or.
      &             d3.ne.mus.or.d4.ne.rhos.or.
      &             d5.ne.etks.or.d6.ne.etms.or.
