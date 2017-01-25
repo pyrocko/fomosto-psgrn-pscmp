@@ -23,7 +23,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       integer idec(NRMAX),igrns(NTMAX,NRMAX)
       double precision cogrns(NRMAX,14,4),grns(NTMAX,NRMAX,14,4)
       double precision r(NRMAX)
-      character*163 greens(14,4)
+      character*1603 greens(14,4)
       logical select(14,4)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     LOCAL WORK SPACES
@@ -43,12 +43,12 @@ c
 c     OPEN GREEN'S FUNCTIONS FILES
 c     ============================
 c
-      do lend=80,1,-1
+      do lend=800,1,-1
         if(grndir(lend:lend).ne.' ')goto 100
       enddo
 100   continue
       do i=1,14
-        do lenf=80,1,-1
+        do lenf=800,1,-1
           if(green(i)(lenf:lenf).ne.' ')goto 110
         enddo
 110     continue

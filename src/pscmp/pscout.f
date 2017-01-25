@@ -19,12 +19,12 @@ c
       character*3 cmptxt(14)
       character*7 cmptxtadd(13)
       character*7 rtxt(NRECMAX)
-      character*160 outfile
+      character*1603 outfile
 c
 c     DATA OUTPUT
 c     ===========
 c
-      do lend=80,1,-1
+      do lend=800,1,-1
         if(outdir(lend:lend).ne.' ')goto 100
       enddo
 100   continue

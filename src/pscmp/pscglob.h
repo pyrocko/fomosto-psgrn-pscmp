@@ -90,8 +90,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double precision coobs(NEQMAX,NRECMAX,14)
       double precision poobs(NEQMAX,NRECMAX,14)
       double precision obs1(NRECMAX,14),obs2(NRECMAX,14)
-      character*80 grndir,green(14)
-      character*80 outdir,toutfile(14),scoutfile(NSCMAX)
+      character*800 grndir,green(14)
+      character*800 outdir,toutfile(14),scoutfile(NSCMAX)
 c
       common/iobsarray/ntrec,itsc,itout
       common/dobsarray/latrec,lonrec,tsc,

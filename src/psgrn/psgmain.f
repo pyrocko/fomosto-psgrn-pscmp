@@ -14,8 +14,8 @@ c
       double precision zs1,zs2,dzs,zrs2,swap,vp,vs
       character*35 stype(4)
       character*35 comptxt(14)
-      character*80 inputfile,fname(14),outdir
-      character*163 green(14,4)
+      character*800 inputfile,fname(14),outdir
+      character*1603 green(14,4)
       integer time
 c
 c     read input file file
@@ -152,7 +152,7 @@ c
       call skip_comments(10)
       read(10,*)outdir
 c
-      do lend=80,1,-1
+      do lend=800,1,-1
         if(outdir(lend:lend).ne.' ')goto 100
       enddo
 100   continue
@@ -168,7 +168,7 @@ c
       call skip_comments(10)
       read(10,*)(fname(i),i=10,14)
       do i=1,14
-        do lenf=80,1,-1
+        do lenf=800,1,-1
           if(fname(i)(lenf:lenf).ne.' ')goto 110
         enddo
 110     continue

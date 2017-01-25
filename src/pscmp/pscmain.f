@@ -28,7 +28,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double precision sx,sy,sz
       double complex clonrec1,clonrec2
       double complex clonrec(NRECMAX)
-      character*80 infile
+      character*800 infile
       logical onlysc,neweq
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c     END DECLARATIONS
