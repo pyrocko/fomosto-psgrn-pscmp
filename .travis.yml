@@ -15,7 +15,7 @@ before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
 
 install:
-    - autoreconf -i; ./configure; cd src/psgrn; make; cd ../pscmp; make
+    - autoreconf -i; ./configure; make -j1
 
 script:
     - echo "All done!"
