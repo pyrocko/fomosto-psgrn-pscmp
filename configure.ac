@@ -11,5 +11,5 @@ AC_CONFIG_FILES([
                  src/pscmp/Makefile
                  ])
 
-AC_SUBST([AM_FFLAGS], [-mcmodel=medium])
+AC_SUBST([AM_FFLAGS], [])
 AC_OUTPUT

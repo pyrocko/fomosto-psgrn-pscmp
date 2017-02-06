@@ -17,8 +17,8 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  integer NPSMAX,NRECMAX,NTMAX,NTRMAX,NSCMAX
       parameter(NZSMAX=100,NRMAX=1000)
       parameter(NEQMAX=20,NSMAX=5000,NPTCHMAX=1000)
-	  parameter(NPSMAX=100000)
-      parameter(NRECMAX=40000)
+	  parameter(NPSMAX=20000)
+      parameter(NRECMAX=10000)
       parameter(NTMAX=1024,NTRMAX=1024)
       parameter(NSCMAX=NTRMAX/2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

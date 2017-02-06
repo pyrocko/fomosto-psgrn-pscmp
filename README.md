@@ -29,3 +29,20 @@ autoreconf -i   # only if 'configure' script is missing
 make
 sudo make install
 ```
+
+# To run PSCMP with more receivers/source points
+
+1. Choose larger values for `NPSMAX` and `NRECMAX` in `src/pscmp/pscglob.h`,
+   e.g.:
+   ```
+       parameter(NPSMAX=100000)
+       parameter(NRECMAX=40000)
+   ```
+
+2. Recompile with `-mcmodel=medium`:
+   ```
+   ./configure FFLAGS=-mcmodel=medium
+   make clean
+   make
+   sudo make install
+   ```
