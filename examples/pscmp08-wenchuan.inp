@@ -160,9 +160,9 @@
 #    Note that all file or directory names should not be longer than 80
 #    characters. Directories must be ended by / (unix) or \ (dos)!
 #===============================================================================
- 1    0.0  0.0  -1.00      !displacement upward positive
- 0     0.700  0.000  330.000   90.000  180.000    0.0E+00    0.0E+00    0.0E+00
-'.\'
+ 0    -0.072  0.408  -0.910
+ 0    
+'./'
   0           0           0
   'ux.dat'    'uy.dat'    'uz.dat'
   0           0           0           0            0           0
