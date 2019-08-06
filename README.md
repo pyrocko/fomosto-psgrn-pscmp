@@ -1,48 +1,38 @@
-# PSGRN and PSCMP (packaged as fomosto backend)
+# Announcement: The fomosto-psgrn-pscmp repository is leaving GitHub
 
-[![Build Status](https://travis-ci.org/pyrocko/fomosto-psgrn-pscmp.svg?branch=master)](https://travis-ci.org/pyrocko/fomosto-psgrn-pscmp)
+*Potsdam, 2019-08-05*
 
-Code to calculate synthetic stress/strain/tilt/gravitational fields on a
-layered viscoelastic halfspace.
+Since last week, [GitHub is restricting access to their services based on
+user nationality and residence](https://help.github.com/en/articles/github-and-trade-controls>) ([see
+also](https://techcrunch.com/2019/07/29/github-ban-sanctioned-countries)).
+Such restrictions are incompatible with scientific standards in
+international research communities like seismology.
 
-PSGRN and PSCMP have been written by Rongjiang Wang.
+The fomosto-psgrn-pscmp software package is used by researchers worldwide. As researchers, we are obligated to retain open
+access to all. To achieve this, we are now migrating our code repositories
+away from GitHub to a new safe home. The new home of the fomosto-psgrn-pscmp repository
+is at [git.pyrocko.org](https://git.pyrocko.org/pyrocko/fomosto-psgrn-pscmp/), open now.
 
-Packaging has been done by Hannes Vasyura-Bathke.
+To ensure a smooth
+transition, we will keep a read-only version of the fomosto-psgrn-pscmp repository
+at GitHub until 2019-10-01, when it will be deleted.
 
-## References
+To update the upstream url of a cloned fomosto-psgrn-pscmp repository, run
 
-- Wang, R., F. Lorenzo-Martín and F. Roth (2003), Computation of deformation
-  induced by earthquakes in a multi-layered elastic crust - FORTRAN programs
-  EDGRN/EDCMP, Computer and Geosciences, 29(2), 195-207.
-- Wang, R., F. Lorenzo-Martin and F. Roth (2006), PSGRN/PSCMP - a new code for
-  calculating co- and post-seismic deformation, geoid and gravity changes
-  based on the viscoelastic-gravitational dislocation theory, Computers and
-  Geosciences, 32, 527-541. DOI:10.1016/j.cageo.2005.08.006.
-- Wang, R. (2005), The dislocation theory: a consistent way for including the
-  gravity effect in (visco)elastic plane-earth models, Geophysical Journal
-  International, 161, 191-196.
-
-# Compile and install PSGRN and PSCMP
 ```
-autoreconf -i   # only if 'configure' script is missing
-./configure
-make
-sudo make install
+git remote set-url origin https://git.pyrocko.org/pyrocko/fomosto-psgrn-pscmp.git
 ```
 
-# To run PSCMP with more receivers/source points
+in the cloned directory.
 
-1. Choose larger values for `NPSMAX` and `NRECMAX` in `src/pscmp/pscglob.h`,
-   e.g.:
-   ```
-       parameter(NPSMAX=100000)
-       parameter(NRECMAX=40000)
-   ```
+To obtain a fresh clone, run
 
-2. Recompile with `-mcmodel=medium`:
-   ```
-   ./configure FFLAGS=-mcmodel=medium
-   make clean
-   make
-   sudo make install
-   ```
+```
+git clone https://git.pyrocko.org/pyrocko/fomoto-psgrn-pscmp.git fomosto-psgrn-pscmp
+```
+
+Thanks to the worldwide seismology community for all the support and help.
+
+Best regards
+
+*The fomosto-psgrn-pscmp Developers*
