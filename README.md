@@ -33,6 +33,18 @@ git clone https://git.pyrocko.org/pyrocko/fomoto-psgrn-pscmp.git fomosto-psgrn-p
 
 Thanks to the worldwide seismology community for all the support and help.
 
-Best regards
+Best regards,
 
 *The fomosto-psgrn-pscmp Developers*
+
+# Installation
+
+A Fortran77 compiler is required and the automake tools. These should be standard on Linux systems.
+
+```sh
+cd fomosto-psgrn-pscmp
+autoreconf -i
+
+make
+sudo make install
+```

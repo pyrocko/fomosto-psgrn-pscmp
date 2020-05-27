@@ -9,15 +9,15 @@ c     NSMAX = max. number of fault segments
 c     NEQMAX = max. number of earthquakes
 c     NPTCHMAX = max. number of patches at a source rectangle
 c     NPSMAX = max. number of discrete point sources per source depth
-c     NTMAX = max. number of time samples used for Green's functions
+c     NTMAX = max. number of time samples used for Greens functions
 c     NTRMAX = max. number of time samples of the outputs
 c     NSCMAX = max. number of scenario outputs (<= NTRMAX/2)
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       integer NZSMAX,NRMAX,NEQMAX,NSMAX,NPTCHMAX
-	  integer NPSMAX,NRECMAX,NTMAX,NTRMAX,NSCMAX
-      parameter(NZSMAX=100,NRMAX=1000)
+      integer NPSMAX,NRECMAX,NTMAX,NTRMAX,NSCMAX
+      parameter(NZSMAX=1000,NRMAX=4000)
       parameter(NEQMAX=20,NSMAX=5000,NPTCHMAX=1000)
-	  parameter(NPSMAX=20000)
+      parameter(NPSMAX=40000)
       parameter(NRECMAX=10000)
       parameter(NTMAX=1024,NTRMAX=1024)
       parameter(NSCMAX=NTRMAX/2)
@@ -37,7 +37,7 @@ c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double precision tstart(NSMAX),eqtime(NEQMAX)
       double precision ptch_s(NSMAX,NPTCHMAX),ptch_d(NSMAX,NPTCHMAX)
       double precision slip_s(NSMAX,NPTCHMAX)
-	  double precision slip_d(NSMAX,NPTCHMAX)
+      double precision slip_d(NSMAX,NPTCHMAX)
       double precision opening(NSMAX,NPTCHMAX)
 c
       common/irects/nptch_s,nptch_d,ieqno
@@ -60,13 +60,13 @@ c
       common/dpoints/plat,plon,pz,pmwei
 c
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-c     GREEN'S FUNCTION INFO
+c     GREENS FUNCTION INFO
 c     =====================
 c
 c     nzs,zs1,zs2 = number of depth samples, start and end depths used
-c           in Green's functions
+c           in Greens functions
 c     nr,r1,r2 = number of distance samples, start and end distances used
-c           in Green's functions
+c           in Greens functions
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       integer nr,nzs,nt
       double precision r1,r2,sampratio,zs1,zs2
@@ -131,5 +131,5 @@ c     LOCAL CONSTANTS
 c     ==============
 c~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       double precision DEG2RAD,KM2M,DAY2SEC,REARTH,G0
-      parameter(DEG2RAD=1.745329252d-02,KM2M=1.0d+03)
-      parameter(DAY2SEC=8.64d+04,REARTH=6.371d+06,G0=9.82d+00)
+      parameter(DEG2RAD=1.7453292519943295d-02,KM2M=1.0d+03)
+      parameter(DAY2SEC=8.64d+04,REARTH=6.371d+06,G0=9.80665d+00)

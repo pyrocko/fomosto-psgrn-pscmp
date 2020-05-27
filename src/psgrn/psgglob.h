@@ -7,13 +7,13 @@ c     nfmax: max. no of frequency samples.
 c     nzsmax: max. number of source depths
 c
       integer lmax,nzmax,nrmax,nfmin,nfmax,ntmax,nzsmax
-      parameter(lmax=100)
+      parameter(lmax=500)
       parameter(nzmax=lmax+3)
-      parameter(nrmax=251)
+      parameter(nrmax=2001)
       parameter(nfmin=64)
-	  parameter(nfmax=1024)
+	parameter(nfmax=1024)
       parameter(ntmax=2*nfmax)
-      parameter(nzsmax=100)
+      parameter(nzsmax=500)
 c
 c     INDEX PARAMETERS FOR BESSEL FUNCTION TABLES
 c     ===========================================
