@@ -23,31 +23,33 @@ Packaging has been done by Hannes Vasyura-Bathke.
   International, 161, 191-196.
 
 # Compile and install PSGRN and PSCMP
-```
+```sh
 autoreconf -i   # only if 'configure' script is missing
 ./configure
 make
 sudo make install
 ```
 
-# To run PSCMP with more receivers/source points
+# To run PSGRN/PSCMP with more receivers/source points
 
-1. Choose larger values for `NPSMAX` and `NRECMAX` in `src/pscmp/pscglob.h`,
+1. Choose larger values in `src/psgrn/psgglob.h`,
    e.g.:
-   ```
-       parameter(NPSMAX=100000)
-       parameter(NRECMAX=40000)
+   ```fortran
+   parameter(lmax=1000)
+   parameter(nrmax=4001)
    ```
 
-2. Recompile with `-mcmodel=medium`:
+2. Choose larger values in `src/pscmp/pscglob.h`,
+   e.g.:
+   ```fortran
+   parameter(NZSMAX=5000,NRMAX=10000)
+   parameter(NPSMAX=40000)
+   parameter(NRECMAX=40000)
    ```
-   ./configure FFLAGS=-mcmodel=medium
+
+3. Recompile:
+   ```sh
    make clean
    make
    sudo make install
    ```
-autoreconf -i
-
-make
-sudo make install
-```
